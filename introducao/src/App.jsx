@@ -1,8 +1,11 @@
+// css 
 import './App.css'
-import Events from './components/Events'
+
+// components 
 import FirstComponent from './components/FirstComponent'
 import TemplateExpressions from './components/TemplateExpressions'
-// fora do jsx pode comentar normal m
+import Events from './components/Events'
+// fora do jsx pode comentar normal 
 const App = () => {
   return (
     <div>
