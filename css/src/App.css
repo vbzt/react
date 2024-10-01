@@ -1,3 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--colorido);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: var(--corFundo);
+}
+
+
+
+* {
+  border: none;
+  box-shadow: none;
+  box-sizing: border-box;
+  font-style: normal;
+  font-family: "DM sans";
+  margin: 0;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  resize: none;
+  outline: none;
+  border: 0;
+  color: var(--corTexto);
+  scroll-behavior: smooth;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -5,42 +37,13 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
 p{
   color: white;
 }
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.title{ 
+  color: rgb(116, 205, 219);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.redTitle{ 
+  color: rgb(219, 116, 116);
 }
