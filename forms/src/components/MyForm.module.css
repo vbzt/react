@@ -1,0 +1,33 @@
+.form{ 
+  padding: 4cqh;
+  border: 1px solid #bbb;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.form div{ 
+  width: 100%;
+}
+
+.form label{ 
+  display: flex;
+  flex-direction: column;
+}
+
+.form span{ 
+  padding: 0 0 0 1cqh;
+}
+
+.form input, textarea{ 
+  padding: 1cqh 1.5cqh;
+  font-size: 1rem;
+  border: 1px solid #111;
+  border-radius: 7px;
+  font-weight: 500;
+}
+
+.form button{ 
+  width: 100%;
+  cursor: pointer;
+}
