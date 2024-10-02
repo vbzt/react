@@ -19,7 +19,7 @@
   padding: 0 0 0 1cqh;
 }
 
-.form input, textarea{ 
+.form input, textarea, select{ 
   padding: 1cqh 1.5cqh;
   font-size: 1rem;
   border: 1px solid #111;
