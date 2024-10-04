@@ -19,17 +19,44 @@
 
 .game .wordContainer{  
   display: grid;
-  grid-template-rows: 1fr;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 2cqh;
 }
 
 .game .wordContainer span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 2cqh;
   padding: 1cqh;
   width: 5cqh;
   height: 5cqh;
-  border: 1px solid var(--colorido) ;
+  border: 2px solid var(--colorido);
+  border-radius: 5px;
+  text-transform: uppercase;
 }
 
-.game .letterContainer form input{ 
-  width: 1cqh;
+.game .letterContainer p{ 
+  font-size: 2.5cqh;
+  text-align: start;
+}
+
+.game .letterContainer .letterFormContainer{ 
+  display: flex;
 
 }
+
+.game .letterContainer .letterFormContainer form input{ 
+  text-align: center;
+  font-size: 2cqh;
+  font-weight: 600;
+  width: 5cqh;
+  height: 5cqh;
+  background-color: transparent;
+  text-transform: uppercase;
+  border: 2px solid var(--corTexto);
+  border-radius: 5px;
+}
+
