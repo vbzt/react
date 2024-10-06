@@ -1,7 +1,11 @@
 .game{ 
   display: flex;
   flex-direction: column;
-  gap: 1.3cqh;
+  gap: 2.5cqh;
+}
+
+.game p{ 
+  text-align: start;
 }
 
 .game h1{ 
@@ -21,7 +25,7 @@
   display: grid;
   grid-auto-flow: column;
   grid-template-columns: repeat(10, 1fr);
-  gap: 2cqh;
+  gap: 1cqh;
 }
 
 .game .wordContainer span{
@@ -38,17 +42,27 @@
   text-transform: uppercase;
 }
 
+.game .letterContainer{ 
+  display: flex;
+  flex-direction: column;
+  gap: 2.5cqh;
+}
+
 .game .letterContainer p{ 
   font-size: 2.5cqh;
   text-align: start;
 }
 
-.game .letterContainer .letterFormContainer{ 
+.game .letterContainer form{ 
   display: flex;
-
+  gap: 2.5cqh;
 }
 
-.game .letterContainer .letterFormContainer form input{ 
+.game .letterContainer form button{ 
+  width: 100%;
+}
+
+.game .letterContainer form input{ 
   text-align: center;
   font-size: 2cqh;
   font-weight: 600;
@@ -60,3 +74,16 @@
   border-radius: 5px;
 }
 
+.game .wrongLettersContainer{ 
+  text-align: start;
+}
+
+.game .wrongLettersContainer p{ 
+  font-size: 2.5cqh;
+}
+
+.game .wrongLettersContainer span{ 
+  text-transform: uppercase;
+  font-size: 2cqh;
+  font-weight: 500;
+}

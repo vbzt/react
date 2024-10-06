@@ -22,11 +22,15 @@ const App = () => {
   const [gameStage, setGameStage] = useState(stages[0].name)
   const [ words ] = useState(wordList)
   
-  const [word, setPickedWorld] = useState('')
+  const [word, setPickedWord] = useState('')
   const [category, setPickedCategory] = useState('')
-  const [letters, setPickedLetters] = useState( [] )
+  const [ letters, setPickedLetters] = useState( [] )
+  const [guessedLetters, setGuessedLetters] = useState( [ ] )
+  const [wrongLetters, setWrongLetters] = useState([])
+  const [guesses, setGuesses] = useState(8)
+  const [score, setScore] = useState(0)
 
-  const pickWorldAndCategory = () => { 
+  const pickWordAndCategory = () => { 
     // pick category
     const categories = Object.keys(words)
     const category = categories[Math.floor(Math.random() * Object.keys(categories).length)]
@@ -37,7 +41,7 @@ const App = () => {
 
   const startGame = () => { 
     // random word & category
-    const { word, category} = pickWorldAndCategory()
+    const { word, category} = pickWordAndCategory()
 
     // array of words's letter 
     let wordLetters = word.split('')
@@ -45,7 +49,7 @@ const App = () => {
    
     // states 
     setPickedCategory(category)
-    setPickedWorld(word)
+    setPickedWord(word)
     setPickedLetters(wordLetters)
 
     // change screen 
@@ -53,8 +57,21 @@ const App = () => {
   }
 
   // letter input
-  const verifyLetter = () => {
-    setGameStage(stages[2].name)
+  const verifyLetter = (letter) => {
+    
+    const normalizedLetter = letter.toLowerCase()
+
+    // checks if letter alr been typed
+    if(guessedLetters.includes(normalizedLetter) || wrongLetters.includes(normalizedLetter)) return
+
+    if(letters.includes(normalizedLetter)) {
+        setGuessedLetters((actualGuessedLetters) => [ ...actualGuessedLetters, normalizedLetter ])
+    }else{ 
+      setWrongLetters((actualWordLetters) => [...actualWordLetters, normalizedLetter])
+    }
+
+    console.log(`Certas: ${guessedLetters}`)
+    console.log(`Errado`)
   }
 
   const retry = () => { 
@@ -64,7 +81,16 @@ const App = () => {
   return (
     <>
       {gameStage === 'start' && <StartScreen startGame={startGame}></StartScreen>}
-      {gameStage === 'game' && <Game verifyLetter = {verifyLetter}></Game>}
+      {gameStage === 'game' && <Game 
+      verifyLetter = {verifyLetter} 
+      pickedWord = {word} 
+      pickedCategory = {category} 
+      letters = {letters}
+      guessedLetters = {guessedLetters}
+      wrongLetters = {wrongLetters} 
+      guesses = { guesses }
+      score = { score }
+      ></Game>}
       {gameStage === 'end' && <GameOver retry = { retry }></GameOver>}
     </>
   )
