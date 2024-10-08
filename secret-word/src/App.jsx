@@ -39,7 +39,8 @@ const App = () => {
     return {word, category}
   }
 
-  const startGame = () => { 
+  const startGame = () => {
+    clearStats() 
     // random word & category
     const { word, category} = pickWordAndCategory()
 
@@ -59,22 +60,53 @@ const App = () => {
   // letter input
   const verifyLetter = (letter) => {
     
+    console.log(`Certas: ${guessedLetters}`)
+    console.log(`Errado: ${wrongLetters}`)
     const normalizedLetter = letter.toLowerCase()
 
+    const letterRegex = /^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/
+
     // checks if letter alr been typed
-    if(guessedLetters.includes(normalizedLetter) || wrongLetters.includes(normalizedLetter)) return
+    if(guessedLetters.includes(normalizedLetter) || wrongLetters.includes(normalizedLetter) || !letterRegex.test(normalizedLetter)) return
 
     if(letters.includes(normalizedLetter)) {
         setGuessedLetters((actualGuessedLetters) => [ ...actualGuessedLetters, normalizedLetter ])
     }else{ 
-      setWrongLetters((actualWordLetters) => [...actualWordLetters, normalizedLetter])
+        setWrongLetters((actualWrongLetters) => [...actualWrongLetters, normalizedLetter])
+        setGuesses((actualGuesses) => actualGuesses - 1)
     }
 
-    console.log(`Certas: ${guessedLetters}`)
-    console.log(`Errado`)
   }
 
+  const clearStats = () => { 
+    setGuesses(8)
+    setWrongLetters([])
+    setGuessedLetters([])
+  }
+
+  //checks win condition 
+  useEffect(() => { 
+    const uniqueAnswer = [...new Set(letters)]
+    if(guessedLetters.length === uniqueAnswer.length && uniqueAnswer.length >= 1 ){ 
+      setScore(score + 100)
+      startGame()
+    }
+  })
+
+  // checks lose condition
+  useEffect(() => { 
+    
+    if(guesses <= 0 ) { 
+      setGameStage(stages[2].name)
+      clearStats()
+    }
+
+
+  }, [ guesses ])
+
   const retry = () => { 
+
+    setScore(0)
     setGameStage(stages[0].name)
   }
 
@@ -91,7 +123,7 @@ const App = () => {
       guesses = { guesses }
       score = { score }
       ></Game>}
-      {gameStage === 'end' && <GameOver retry = { retry }></GameOver>}
+      {gameStage === 'end' && <GameOver score = { score } retry = { retry }></GameOver>}
     </>
   )
 }
